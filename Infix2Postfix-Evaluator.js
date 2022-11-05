@@ -21,14 +21,14 @@ const operators = {
 const is_operator = (c) => c in operators;
 const is_digit = (c) => c >= '0' && c <= '9';
 const is_identifier = (c) => (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
-const is_space = (c) => c == ' ';
-const is_left_parenthesis = (c) => c == '(';
-const is_right_parenthesis = (c) => c == ')';
-const is_left_associative = (c) => c == '+' || c == '-' || c == '*' || c == '/' || c == '%';
-const is_right_associative = (c) => c == '^';
+const is_space = (c) => c === ' ';
+const is_left_parenthesis = (c) => c === '(';
+const is_right_parenthesis = (c) => c === ')';
+const is_left_associative = (c) => c === '+' || c === '-' || c === '*' || c === '/' || c === '%';
+const is_right_associative = (c) => c === '^';
 const is_associative = (c) => is_left_associative(c) || is_right_associative(c);
 const is_higher_precedence = (c1, c2) => {
-    if (is_left_associative(c1) && operators[c1] == operators[c2]) return true;
+    if (is_left_associative(c1) && operators[c1] === operators[c2]) return true;
     return operators[c1] > operators[c2];
 };
 
@@ -95,12 +95,12 @@ const evaluate_postfix = (postfix, variables = {}) => {
             let a = stack.pop();
             let b = stack.pop();
 
-            if (c == '+') stack.push(b + a);
-            else if (c == '-') stack.push(b - a);
-            else if (c == '*') stack.push(b * a);
-            else if (c == '/') stack.push(b / a);
-            else if (c == '%') stack.push(b % a);
-            else if (c == '^') stack.push(b ** a);
+            if (c === '+') stack.push(b + a);
+            else if (c === '-') stack.push(b - a);
+            else if (c === '*') stack.push(b * a);
+            else if (c === '/') stack.push(b / a);
+            else if (c === '%') stack.push(b % a);
+            else if (c === '^') stack.push(b ** a);
         }
     }
 
